@@ -1,9 +1,8 @@
 from random import random, randint
 from typing import List
 
-from pylab import *
-from pycxsimulator import GUI
 import matplotlib
+from pylab import *
 
 matplotlib.use('TkAgg')
 
@@ -13,7 +12,10 @@ th = 0.5    # threshold
 
 
 class Agent:
-    pass
+    def __init__(self, _type, x, y):
+        self.x = x
+        self.y = y
+        self.type = _type
 
 
 agents = []
