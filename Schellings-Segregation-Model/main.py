@@ -1,7 +1,7 @@
 from random import random, randint
 import matplotlib
 
-matplotlib.use('TkAgg')
+# matplotlib.use('TkAgg')
 from pylab import *
 
 n = 1000  # number of agents
@@ -64,7 +64,7 @@ def update():
             ag.y = random()
 
 
-import pycxsimulator
-# no longer maintained
+from pycxsimulator import GUI
 
-pycxsimulator.GUI().start(func=[init_agents, observe, update])
+
+GUI().start(func=[init_agents, observe, update])
