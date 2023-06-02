@@ -1,12 +1,12 @@
 from random import random, randint
-import matplotlib
+from typing import List
 
-# matplotlib.use('TkAgg')
 from pylab import *
+from pycxsimulator import GUI
 
-n = 1000  # number of agents
-r = 0.1
-th = 0.5  # threshold
+n = 1000    # number of agents
+r = 0.1     # neighbourhood radius
+th = 0.5    # threshold
 
 
 class Agent:
@@ -25,10 +25,9 @@ def init_agents():
         a.x = random()
         a.y = random()
         agents.append(a)
-    return agents
 
 
-def detect_neighbours(ag: Agent):
+def detect_neighbours(ag: Agent) -> List[Agent]:
     """
     The model assumption says each agent checks who are in its neighborhood,
     and if the fraction of the other agents of the same type is less
@@ -38,8 +37,8 @@ def detect_neighbours(ag: Agent):
     r --> neighbourhood radius
     """
     global r
-    neighbours = [nb for nb in agents if (ag.x - nb.x) ** 2 + (ag.y - nb.y) ** 2 < r ** 2 and nb != ag]
-    return neighbours
+    global agents
+    return [nb for nb in agents if ((ag.x - nb.x) ** 2 + (ag.y - nb.y) ** 2) < r ** 2 and nb != ag]
 
 
 def observe():
@@ -62,9 +61,6 @@ def update():
         if q < th:
             ag.x = random()
             ag.y = random()
-
-
-from pycxsimulator import GUI
 
 
 GUI().start(func=[init_agents, observe, update])
