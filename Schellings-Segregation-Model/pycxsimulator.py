@@ -29,23 +29,11 @@
 
 import matplotlib
 
-# System check added by Steve Morgan
-import platform  # SM 3/28/2020
-
-if platform.system() == "Windows":  # SM 3/28/2020
-    backend = "TkAgg"  # SM 3/28/2020
-else:  # SM 3/28/2020
-    backend = "Qt5Agg"  # SM 3/28/2020
-matplotlib.use(backend)  # SM 3/28/2020
+matplotlib.use("TkAgg")  # SM 3/28/2020
 
 import matplotlib.pyplot as plt  # SM 3/28/2020
-
-## version check added by Hiroki Sayama on 01/08/2019
-import sys
-
-if sys.version_info[0] == 3:  # Python 3
-    from tkinter import *
-    from tkinter.ttk import Notebook
+from tkinter import *
+from tkinter.ttk import Notebook
 
 ## suppressing matplotlib deprecation warnings (especially with subplot) by Hiroki Sayama on 06/29/2020
 import warnings
@@ -58,7 +46,7 @@ warnings.filterwarnings(
 class GUI:
     # Constructor
     def __init__(
-            self, title="PyCX Simulator", interval=0, stepSize=1, parameterSetters=[]
+            self, title="PyCX Simulator", interval=0, stepSize=50, parameterSetters=[]
     ):
         ## all GUI variables moved to inside constructor by Hiroki Sayama 10/09/2018
 

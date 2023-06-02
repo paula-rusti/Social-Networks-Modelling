@@ -3,6 +3,9 @@ from typing import List
 
 from pylab import *
 from pycxsimulator import GUI
+import matplotlib
+
+matplotlib.use('TkAgg')
 
 n = 1000    # number of agents
 r = 0.1     # neighbourhood radius
@@ -40,6 +43,7 @@ def detect_neighbours(ag: Agent) -> List[Agent]:
     global agents
     return [nb for nb in agents if ((ag.x - nb.x) ** 2 + (ag.y - nb.y) ** 2) < r ** 2 and nb != ag]
 
+import matplotlib.pyplot as plt  # SM 3/28/2020
 
 def observe():
     global agents
@@ -50,6 +54,7 @@ def observe():
     plot([ag.x for ag in black], [ag.y for ag in black], 'ko')
     axis('image')
     axis([0, 1, 0, 1])
+    plt.show()
 
 
 def update():
@@ -63,4 +68,11 @@ def update():
             ag.y = random()
 
 
-GUI().start(func=[init_agents, observe, update])
+# GUI().start(func=[init_agents, observe, update])
+
+while True:
+    init_agents()
+    update()
+    observe()
+    for a in agents:
+        print(a.x, a.y)
